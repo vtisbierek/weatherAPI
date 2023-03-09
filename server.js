@@ -8,14 +8,11 @@ app.use(bodyParser.urlencoded({extended:true}));
 
 app.get("/",function(req,res){
     res.sendFile(__dirname + "/index.html");   
-    console.log(process.env.APP_KEY); 
 })
 
 app.post("/",function(req,res){
     var cityName = req.body.cityName;
     var geoCodingUrl = "https://api.openweathermap.org/geo/1.0/direct?q=" + cityName + "&appid=" + process.env.APP_KEY;
-
-    console.log(process.env.APP_KEY);
 
     https.get(geoCodingUrl, function(response){
         response.on("data", function(data){
